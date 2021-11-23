@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let tree = [
+            {
+                id: '1',
+                label: "一级1",
+                parentId: null
+            },
+            {
+                id: '11',
+                label: "二级1",
+                parentId: '1'
+            },
+            {
+                id: '111',
+                label: "三级1",
+                parentId: '11'
+            },
+            {
+                id: '112',
+                label: "三级2",
+                parentId: '11'
+            },
+
+
+            {
+                id: '2',
+                label: "一级2",
+                parentId: null
+            },
+            {
+                id: '21',
+                label: "二级2",
+                parentId: '2'
+            },
+            {
+                id: '211',
+                label: "三级2",
+                parentId: '21'
+            },
+            {
+                id: '212',
+                label: "三级3",
+                parentId: '21'
+            },
+
+
+            {
+                id: '3',
+                label: "一级3",
+                parentId: null
+            },
+            {
+                id: '31',
+                label: "二级3",
+                parentId: '3'
+            },
+            {
+                id: '311',
+                label: "三级3",
+                parentId: '31'
+            },
+            {
+                id: '312',
+                label: "三级4",
+                parentId: '31'
+            },
+        ]
+
+        function toTree(data) {
+                let result = []
+                if(!Array.isArray(data)) {
+                    return result
+                }
+                data.forEach(item => {
+                    delete item.children;
+                });
+                let map = {};
+                data.forEach(item => {
+                    map[item.id] = item;
+                });
+                data.forEach(item => {
+                    let parent = map[item.parentId];
+                    if(parent) {
+                        (parent.children || (parent.children = [])).push(item);
+                    } else {
+                        result.push(item);
+                    }
+                });
+                return result;
+            }
+            console.log(toTree(tree))
+
+        // let parentLevel = []
+        // let childLevel = []
+        // parentLevel = tree.filter(item => !item.parentId)
+        // childLevel = tree.filter(item => item.parentId)
+
+        // function getRes(parent, child) {
+
+        //     let Remaining = child
+        //     console.log(parent)
+        //     parent.forEach(item => {
+
+        //         test(Remaining)
+
+        //         function test(_child) {
+
+        //             Remaining = _child.filter(element => {
+
+        //                 if (item.id === element.parentId) {
+        //                     if (!item.childen) {
+        //                         item.childen = []
+        //                     }
+        //                     item.childen.push(element)
+        //                 } else {
+        //                     return element
+        //                 }
+
+        //             });
+        //             // console.log(Remaining)
+        //         }
+
+        //     })
+
+        //     if (Remaining.length) {
+        //         parent.forEach(i => {
+        //             getRes(i.childen, Remaining)
+        //         });
+                
+        //     }
+
+        //     // console.log(parentLevel)
+        // }
+
+        // getRes(parentLevel, childLevel)
+
+
+
+
+    </script>
+</body>
+
+</html>

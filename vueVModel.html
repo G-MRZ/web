@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-model='model'>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    // 定义 v-model 示例组件
+    // Vue.component('bindData', {
+    //     template: `<div>
+    //         <p>this is bindData component!</p>
+    //                 <button @click="handleChange">change input value</button>
+    //         <input type="text" v-model="inputValue" />
+    //                 <p>{{inputValue}}</p>
+    //         </div>`,
+    //     data() {
+    //         return {
+    //             inputValue: 'hello'
+    //         }
+    //     },
+    //     methods: {
+    //         // 点击按钮改变 input 的值
+    //         handleChange() {
+    //             this.inputValue = `I'm changed`;
+    //         }
+    //     }
+    // });
+
+    // const app = new Vue({
+    //     el: '#app',
+    //     template: `<div><bindData/></div>`
+    // });
+
+    // 定义 v-model 示例组件改写
+    Vue.component('bindData1', {
+        template: `
+    <div>
+      <p>this is bindData1 component!</p>
+			<button @click="handleChange">change input value</button>
+      <input type="text" :value="inputValue" @input="handleInputChange" />
+			<p>input 中的值为：{{inputValue}}</p>
+    </div>
+  `,
+        data() {
+            return {
+                inputValue: 'hello'
+            }
+        },
+        
+        methods: {
+            // 处理 input 输入 change 事件
+            handleInputChange(e) {
+                // console.log(e.target.value)
+                this.inputValue = e.target.value;
+            },
+
+            // 点击按钮改变 input 的值
+            handleChange() {
+                this.inputValue = `I'm changed`;
+            }
+        }
+    });
+
+    const app = new Vue({
+        el: '#app',
+        template: `
+    <div>
+      <bindData1 />
+    </div>
+  `
+    });
+
+
+</script>
+
+</html>

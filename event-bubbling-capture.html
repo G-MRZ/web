@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bubling">
+        <p class="p1">事件冒泡</p>
+    </div>
+    <div class="capture">
+        <p class="p2">事件捕获</p>
+    </div>
+    <script>
+        let bubling=document.querySelector('.bubling')
+        let p1=document.querySelector('.p1')
+        bubling.addEventListener('click',function(e){
+            console.log('事件冒泡1')
+        },false)
+        p1.addEventListener('click',function(e){
+            console.log(e)
+            e.stopPropagation
+            console.log('事件冒泡2')
+        },false)
+
+
+        let capture=document.querySelector('.capture')
+        let p2=document.querySelector('.p2')
+        capture.addEventListener('click',function(){
+            console.log('事件捕获1')
+        },true)
+        p2.addEventListener('click',function(){
+            console.log('事件捕获2')
+        },true)
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https://github.com/mqyqingfeng/blog/issues/2
+        console.log(Object.__proto__)
+        let obj = {}
+        console.log(Object.prototype)
+        console.log(obj.__proto__ === Object.prototype)
+        // prototype是函数才会有的属性
+        function Person() {
+            this.name="张三"
+            this.age=20
+        }
+        Person.prototype.say = function () {
+            console.log('ssss')
+        }
+        var person = new Person();
+        person.name = 'Kevin';
+        console.log(person.age,person.name)
+        console.log(Person.prototype.constructor == Person) // true
+        // 顺便学习一个ES5的方法,可以获得对象的原型
+        console.log(Object.getPrototypeOf(person) === Person.prototype) // true
+
+        console.log(person.__proto__)
+        console.log(Person.prototype)
+        console.log(person.__proto__ === Person.prototype)
+        // 原型的原型
+        console.log(person.__proto__.__proto__)
+        console.log(Person.prototype.__proto__)
+        console.log(person.__proto__.__proto__===Person.prototype.__proto__)
+    </script>
+</body>
+
+</html>

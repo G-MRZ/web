@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./table.js"></script>
+    <script>
+        const columns = [{
+            title: '姓名',
+            dataIndex: 'name',
+            align: 'center',
+            key: 'name',
+        }, {
+            title: '年龄',
+            dataIndex: 'age',
+        }, {
+            title: '工作',
+            dataIndex: 'job',
+            key: 'name',
+        }, {
+            title: '操作',
+            key: 'action',
+            render: (text, record) => {
+                return create('a', 'color: blue', { record })
+            }
+        }]
+        function create(type, cssText, data) {
+            let element = document.createElement(type);
+            element.style.cssText = cssText;
+            element.innerHTML = '删除';
+            element.onclick = click.bind(this, data.record);
+            return element;
+        }
+        function click(record) {
+            console.log(record);
+        }
+        const dataSource = [
+            {
+                name: '小红',
+                age: '111',
+                job: '前端'
+            },
+            {
+                age: '111'
+            },
+            {
+            },
+            {
+                name: '小红1',
+                job1: '前端'
+            }]
+        Table({ columns, dataSource })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // call实现模拟
+        Function.prototype.call2 = function (context) {
+            context.fn = this;
+            // var args = [];
+            // for (var i = 1, len = arguments.length; i < len; i++) {
+            //     args.push('arguments[' + i + ']');
+            // }
+
+            // eval('context.fn(' + args + ')');
+
+            let arg = [...arguments].slice(1)
+            // console.log(arg)
+            // context.fn(...arg)
+            delete context.fn;
+        }
+
+        // 测试一下
+        var foo = {
+            value: 1
+        };
+
+        function bar(name, age) {
+            // console.log(name)
+            // console.log(age)
+            console.log(this.value);
+        }
+
+        bar.call2(foo, 'kevin', 18);
+
+
+
+        // function Foo() {
+        //     getName = function () {
+        //         console.log(1);
+        //     };
+        //     return this;
+        // }
+
+        // Foo.prototype.getName = function () {
+        //     console.log(3);
+        // };
+
+        // function getName() {
+        //     console.log(5);
+        // };
+        // Foo().getName()//3
+
+// kevin
+// 18
+// 1
+
+    </script>
+</body>
+
+</html>

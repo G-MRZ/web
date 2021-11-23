@@ -1,0 +1,251 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        border: 1px solid #ccc;
+        background: #fc9;
+        color: #fff;
+        width: 500px;
+        margin: 50px auto;
+        padding: 50px;
+        /* box-sizing: border-box; */
+        /* overflow: auto; 清除浮动方法1 */
+
+    }
+
+    /* 清除浮动方法2 */
+    .box:after {
+        content: '';
+        overflow: hidden;
+        height: 0;
+        display: block;
+        clear: both;
+    }
+
+    .div1 {
+        width: 100px;
+        height: 100px;
+        background: darkblue;
+        float: left;
+    }
+
+    .div2 {
+        width: 100px;
+        height: 100px;
+        background: darkgoldenrod;
+        float: left;
+    }
+
+    .div3 {
+        width: 100px;
+        height: 100px;
+        background: darkgreen;
+        float: left;
+    }
+
+    /* 清除浮动方法3 */
+    /* .clear {
+      clear: both;
+      height: 0;
+      line-height: 0;
+      font-size: 0
+    } */
+    .span {
+        display: inline-block;
+        /* border-bottom: 200px solid transparent; */
+        border-top: 100px solid red;
+        border-left: 100px solid red;
+        border-right: 100px solid transparent;
+        height: 0;
+        width: 0;
+    }
+
+    .span2 {
+        display: inline-block;
+        width: 100px;
+        height: 0;
+        border-top: 2px solid red;
+        transform: rotate(45deg);
+    }
+</style>
+
+<body>
+	<div></div>
+	<>
+    <span class="span"></span>
+    <span class="span2"></span>
+    <div class="box">
+        <div class="div1">123</div>
+        <div class="div2">123</div>
+        <div class="div3">123</div>
+        <div class="clear"></div>
+    </div>
+    
+    <script>
+        //  function foo(){
+        //     console.log(14,this)   // 因被obj4调用，所以this指的是obj4
+
+        //     let test2 = function(){
+        //         console.log(17,this)   // 上面以及分析过了，此处指的是 window
+        //     }
+        //     var test = ()=> {
+        //         console.log(20,this)   // 但是这里的this 指向的仍是 obj4 与父级作用域的this是相同的
+        //     }
+
+
+        //     test()
+        //     test2()
+        // }
+
+        // var obj4 = {
+        //     a:"哦哦",
+        //     foo:foo
+        // }
+        // obj4.foo()
+
+        /* Safari */
+        // var isSafari = /a/.__proto__ == '//';
+        // console.log(isSafari)
+        // /* Chrome */
+        // var isChrome = Boolean(window.chrome);
+        // console.log(isChrome)
+        // let isMobel=navigator.userAgent
+        // console.log(isMobel)
+
+        /**
+     * 把一个对象的每一项都转化成可观测对象
+     * @param { Object } obj 对象
+     */
+        // function observable(obj) {
+        //     if (!obj || typeof obj !== 'object') {
+        //         return;
+        //     }
+        //     let keys = Object.keys(obj);
+        //     keys.forEach((key) => {
+        //         defineReactive(obj, key, obj[key])
+        //     })
+        //     return obj;
+        // }
+        /**
+         * 使一个对象转化成可观测对象
+         * @param { Object } obj 对象
+         * @param { String } key 对象的key
+         * @param { Any } val 对象的某个key的值
+         */
+        // function defineReactive(obj, key, val) {
+        //     Object.defineProperty(obj, key, {
+        //         get() {
+        //             console.log(`${key}属性被读取了`);
+        //             return val;
+        //         },
+        //         set(newVal) {
+        //             console.log(`${key}属性被修改了`);
+        //             console.log(val,newVal)
+        //             val = newVal;
+        //         }
+        //     })
+        // }
+        // let car = observable({
+        //     'brand': 'BMW',
+        //     'price': 3000
+        // })
+        // car.price=5000
+        // car.brand='大奔'
+        // console.log(car.price)
+        // function Parent() {
+        //     this.names = ['kevin', 'daisy'];
+        // }
+
+        // function Child() {
+        //     this.name='tj'
+        //     // Parent.call(this);
+        //     // console.log(this)
+        // }
+        // Child.prototype.run=function(){}
+        // let c=new Child()
+         class Child{
+             constructor(){
+                this.name="tj"
+             }
+             run(){
+
+             }
+         }
+         let c=new Child()
+
+        // var child1 = new Child();
+        // console.log(new Child())
+        // child1.names.push('yayu');
+
+        // console.log(child1.names); // ["kevin", "daisy", "yayu"]
+
+        // var child2 = new Child();
+
+        // console.log(child2.names); // ["kevin", "daisy"]
+
+        // let [a, b,d] = 'abcd' // a = a; b = b
+        // console.log(a,b,d)
+
+        // let obj = {
+        //     'a': 0,
+        //     'b': 1,
+        //     c: {
+        //         'teag': 'gsdf'
+        //     }
+        // }
+        // let obj1 = Object.assign({}, obj)
+        // obj1.c.teag = 3
+        // console.log(obj)
+        // console.log(obj1)
+        //for in 应用于数组
+        // Array.prototype.sayHello = function () {
+        //     console.log("Hello")
+        // }
+        // Array.prototype.str = 'world';
+        // var myArray = [1, 2, 10, 30, 100];
+        // myArray.name = '数组';
+        // console.log(myArray)
+        // for (let value,index in myArray) {
+        //     console.log(index, value);
+        // }
+        //输出结果如下0,1,2,3,4,name,str,sayHello
+        // let arr = new Set([1, 2, 3])
+        // let str = "gsfshsfg"
+
+        // let someObject = {
+        //     edition: 6,
+        //     committee: "TC39",
+        //     standard: "ECMA-262"
+        // };
+        // let arr=['fadg','fagadg','fadga']
+        // console.log(Object.getPrototypeOf(arr))
+        // for (const iterator of arr) {
+        //     console.log(iterator)
+        // }
+        // console.log(Object.keys(someObject))
+        // 打开一个 web socket  这里端口号和上面监听的需一致
+        var ws = new WebSocket('ws://localhost:3000/');
+	
+        // Web Socket 已连接上，使用 send() 方法发送数据
+        ws.onopen = function () {
+            // 这里用一个延时器模拟事件
+            setInterval(function () {
+                ws.send('客户端消息');
+            }, 2000);
+        }
+        // 这里接受服务器端发过来的消息
+        ws.onmessage = function (e) {
+            console.log(e.data)
+        }
+
+    </script>
+</body>
+
+</html>

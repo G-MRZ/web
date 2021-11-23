@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj={}
+        // consolsssssse.log(obj1.prototype,obj1.__proto__)
+        // console.log(Object.prototype==obj1.__proto__)aaaaaaaaaaaaaa
+        function create(Con, ...args) {
+            let obj = {}
+         //aaaaaaaaaaaaaa
+         //test
+            // Object.setPrototypeOf(obj, Con.prototype)
+            obj.__proto__=Con.prototype
+            console.log(obj)
+            let result = Con.apply(obj, args)
+            return result instanceof Object ? result : obj
+        }
+        function Test(name, age) {
+            this.name = name
+            this.age = age
+        }
+        Test.prototype.sayName = function () {
+            console.log(this.name)
+        }
+        const a = create(Test, 'yck', 26)
+        console.log(a.name) // 'yck'
+        console.log(a.age) // 26
+        a.sayName() // 'yck'
+
+
+    </script>
+</body>
+
+</html>
